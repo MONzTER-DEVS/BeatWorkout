@@ -3,7 +3,6 @@ from kivy.uix.widget import Widget
 from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.gridlayout import MDGridLayout
-from screens import menu
 from kivy.graphics import Rectangle
 from kivy.graphics.texture import Texture
 from kivymd.uix.screen import MDScreen
@@ -25,6 +24,7 @@ def resource_path(relative_path):
 
 
 resource_add_path(resource_path(os.path.join("screens", "menu")))
+resource_add_path(resource_path(os.path.join("fonts", "Roboto_Condensed")))
 
 
 # class GradientBack(Widget):
@@ -44,12 +44,17 @@ resource_add_path(resource_path(os.path.join("screens", "menu")))
 #         #     Rectangle(pos=self.pos, size=self.size, texture=self.texture)
 #         pass
 
-# class MainWidget(MDGridLayout):
-# pass
-
 
 class BeatWorkoutApp(MDApp):
     def build(self):
+        if getattr(sys, "frozen", False):
+            from app.screens import (
+                menu,
+            )
+        else:
+            from screens import (
+                menu,
+            )
         self.root = ScreenManager()
         self.menu = menu.MainMenu()
         self.screens = {"menu": self.menu}
