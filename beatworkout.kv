@@ -1,138 +1,60 @@
 MainWidget:
 
+#:set content_padding_x 50
+#:set content_padding_y 100
 
 <MainWidget>:
     cols: 1
+
+    canvas.before:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
     NavBar:
         size_hint: 1, None
         height: "100dp"
 
-    MDRaisedButton:
-        text: "TESTING"
-        size_hint: 1, None
-        height: dp(100)
-        #md_bg_color: 1, 1, 0, 1
-        elevation_normal: 8
-    StackLayout:
-        spacing: dp(20)
-        padding: dp(20)
-        MDCard:
-            orientation: "vertical"
-            padding: "10dp"
-            size_hint: .5, None
-            height: dp(100)
-            pos_hint: {"center_x": .5, "center_y": .5}
+    Content:    
+    
+    #GradientBack:
+    
 
-            MDLabel:
-                text: "Title"
-                theme_text_color: "Secondary"
-                size_hint_y: .25
+<Content@GridLayout>:
+    canvas.after:
+        Color:
+            rgb: 1, 1, 1
+        RoundedRectangle:
+            pos: self.x+content_padding_x/2, self.y
+            size: self.width-dp(content_padding_x), self.height-dp(content_padding_y)
+            radius: [dp(50)]
 
-            MDSeparator:
-                height: "1dp"
-
-            MDLabel:
-                text: "Cards contain content and actions about a single subject."
-        MDCard:
-            orientation: "vertical"
-            padding: "10dp"
-            size_hint: .5, None
-            height: dp(100)
-            pos_hint: {"center_x": .5, "center_y": .5}
-
-            MDLabel:
-                text: "Title"
-                theme_text_color: "Secondary"
-                size_hint_y: .25
-
-            MDSeparator:
-                height: "1dp"
-
-            MDLabel:
-                text: "Cards contain content and actions about a single subject."
-        MDCard:
-            orientation: "vertical"
-            padding: "10dp"
-            size_hint: .5, None
-            height: dp(100)
-            pos_hint: {"center_x": .5, "center_y": .5}
-
-            MDLabel:
-                text: "Title"
-                theme_text_color: "Secondary"
-                size_hint_y: .25
-
-            MDSeparator:
-                height: "1dp"
-
-            MDLabel:
-                text: "Cards contain content and actions about a single subject."
-        MDCard:
-            orientation: "vertical"
-            padding: "10dp"
-            size_hint: .5, None
-            height: dp(100)
-            pos_hint: {"center_x": .5, "center_y": .5}
-
-            MDLabel:
-                text: "Title"
-                theme_text_color: "Secondary"
-                size_hint_y: .25
-
-            MDSeparator:
-                height: "1dp"
-
-            MDLabel:
-                text: "Cards contain content and actions about a single subject."
-        MDCard:
-            orientation: "vertical"
-            padding: "10dp"
-            size_hint: .5, None
-            height: dp(100)
-            pos_hint: {"center_x": .5, "center_y": .5}
-
-            MDLabel:
-                text: "Title"
-                theme_text_color: "Secondary"
-                size_hint_y: .25
-
-            MDSeparator:
-                height: "1dp"
-
-            MDLabel:
-                text: "Cards contain content and actions about a single subject."
-        MDCard:
-            orientation: "vertical"
-            padding: "10dp"
-            size_hint: .5, None
-            height: dp(100)
-            pos_hint: {"center_x": .5, "center_y": .5}
-
-            MDLabel:
-                text: "Title"
-                theme_text_color: "Secondary"
-                size_hint_y: .25
-
-            MDSeparator:
-                height: "1dp"
-
-            MDLabel:
-                text: "Cards contain content and actions about a single subject."
 
 
 <NavBar@AnchorLayout>:
-    #canvas:
-    #    Color:
-    #        rgba: app.theme_cls.primary_color
-    #    Rectangle:
-    #        pos: self.pos
-    #        size: self.size
 
     anchor_x: "left"
     MDIconButton:
         icon: "arrow-left"
-        user_font_size: "32sp"
+        user_font_size: "48sp"
         theme_text_color: "Custom"
         text_color: app.theme_cls.primary_color
+        elevation_normal: 12
+    
+    #anchor_x: "right"
+    Label:
+        padding: dp(20), dp(10)
+        text_size: self.size
+        font_size: "30dp"
+        font_name: "Roboto_Condensed/RobotoCondensed-Regular.ttf"
+
+        text: "BEAT\nWORKOUT"
+        
+        halign: 'right'
+        valign: 'middle'
+
+        rgb: app.theme_cls.primary_color
 
 
