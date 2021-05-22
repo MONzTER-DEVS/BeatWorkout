@@ -48,9 +48,6 @@ jobs:
       - name: "set path"
         run: cd src && export PATH=$PATH:~/.locl/bin/
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
-
       - name: "compile"
         run: cd src && buildozer -v android debug && ls
 
