@@ -46,7 +46,14 @@ resource_add_path(resource_path(os.path.join("fonts", "Roboto_Condensed")))
 
 
 class BeatWorkoutApp(MDApp):
+
+    def open_drawer(self):
+        self.menu.ids.nav_drawer.set_state("open")
+
     def build(self):
+        self.theme_cls.primary_palette = 'DeepOrange'
+        self.theme_cls.theme_style = "Dark"  # "Light"
+
         if getattr(sys, "frozen", False):
             from app.screens import (
                 menu,

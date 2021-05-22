@@ -1,59 +1,119 @@
-<MainMenu>:
-    MainWidget:
-
 #:set content_padding_x 50
-#:set content_padding_y 100
-
-<MainWidget>:
-    cols: 1
-
-    canvas.before:
-        Color:
-            rgba: 0.1, 0.1, 0.1, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
-    
-    NavBar:
-        size_hint: 1, None
-        height: "100dp"
-
-    Content:    
-    
-    #GradientBack:
-    
-
-<Content@GridLayout>:
-    canvas.after:
-        Color:
-            rgb: 1, 1, 1
-        RoundedRectangle:
-            pos: self.x+content_padding_x/2, self.y
-            size: self.width-dp(content_padding_x), self.height-dp(content_padding_y)
-            radius: [dp(50)]
+#:set content_padding_y 25
+#:set content_height 150
 
 
+<MainMenu>:
+    NavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
 
-<NavBar@AnchorLayout>:
+                    NavBar:
 
-    anchor_x: "left"
+                    MDCard:
+                        border_radius: dp(50)
+                        radius: [dp(50)]
+                        size_hint: .9, 1
+                        pos_hint: {"center_x": .5}
+                        orientation: "vertical"
+                        spacing: dp(10)
+
+                        MDCard:
+                            border_radius: dp(25)
+                            radius: [dp(25)]
+                            orientation: "horizontal"
+                            padding: "8dp"
+                            size_hint: 1, None
+                            height: dp(content_height)
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            hover_behavior: True
+                            md_bg_color: app.theme_cls.primary_color
+
+                            Image:
+                                source: "assets/indoor_cycle.png"
+                                theme_text_color: "Secondary"
+                                size_hint: None, 1
+                                width: dp(content_height)
+                                height: self.texture_size[1]
+
+                            MDLabel:
+                                theme_text_color: "Secondary"
+                                text: "LakBoi :V is a bad bwoi"
+                        
+                        MDCard:
+                            border_radius: dp(25)
+                            radius: [dp(25)]
+                            orientation: "horizontal"
+                            padding: "8dp"
+                            size_hint: 1, None
+                            height: dp(content_height)
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            hover_behavior: True
+                            md_bg_color: app.theme_cls.primary_color
+
+                            Image:
+                                source: "assets/indoor_cycle.png"
+                                theme_text_color: "Secondary"
+                                size_hint: None, 1
+                                width: dp(content_height)
+                                height: self.texture_size[1]
+
+                            MDLabel:
+                                theme_text_color: "Secondary"
+                                text: "Vatsal is a bad bwoi"
+
+                        Widget:
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            ContentNavigationDrawer:
+
+
+<Content@MDCard>:
+
+    border_radius: dp(50)
+    radius: [dp(50)]
+    size_hint: .9, .7
+    pos_hint: {"center_x": .5}
+    orientation: "vertical"
+
+    MDLabel:
+        text: "Title"
+        theme_text_color: "Secondary"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDSeparator:
+        height: "1dp"
+
+    MDLabel:
+        text: "Body"
+
+
+<NavBar@BoxLayout>:
+
+    padding: dp(20), dp(10)
+    size_hint: 1, None
+    height: "100dp"
+
     MDIconButton:
-        icon: "arrow-left"
+        icon: "menu"
         user_font_size: "48sp"
         theme_text_color: "Custom"
         text_color: app.theme_cls.primary_color
         elevation_normal: 12
-    
-    #anchor_x: "right"
+        size_hint: 0.2, 1
+        on_press: app.open_drawer()
+
     Label:
-        padding: dp(20), dp(10)
         text_size: self.size
         font_size: "30dp"
         font_name: "../fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
-
         text: "BEAT\nWORKOUT"
-        
         halign: 'right'
         valign: 'middle'
 
-        rgb: app.theme_cls.primary_color
+        color: app.theme_cls.primary_color
