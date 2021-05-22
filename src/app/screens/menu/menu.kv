@@ -70,7 +70,32 @@
             id: nav_drawer
 
             ContentNavigationDrawer:
+                spacing : dp(10)
+                md_bg_color: app.theme_cls.bg_dark
+                orientation: "vertical"
+                MDLabel:
+                    text : "Menu"
+                    size_hint: 1, 0.1
+                    font_size : 40
+                    valign: 'top'
+                    halign: 'center'
+                    color : app.theme_cls.primary_color
 
+                MDFlatButton:
+                    text : "@Mad"
+                    pos_hint : {"center_x":.5, "center_y":.9}
+                    size_hint: 1, None
+                    height: dp(100)
+                    font_size: 30
+                    md_bg_color: app.theme_cls.primary_color
+                MDFlatButton:
+                    text : "@Mad"
+                    pos_hint : {"center_x":.5, "center_y":.9}
+                    size_hint: 1, None
+                    height: dp(100)
+                    font_size: 30
+                    md_bg_color: app.theme_cls.primary_color
+                Widget
 
 <Content@MDCard>:
 
