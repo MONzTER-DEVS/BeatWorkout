@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
+
       - name: "get code"
         uses: actions/checkout@v2
 
@@ -16,18 +17,18 @@ jobs:
           python-version: '3.7.9'
           architecture: x64
 
-#      - name: Get pip cache dir
-#        id: pip-cache
-#        run: |
-#          echo "::set-output name=dir::$(pip cache dir)"
-#
-#      - name: pip cache
-#        uses: actions/cache@v2
-#        with:
-#          path: ${{ steps.pip-cache.outputs.dir }}
-#          key: android-pip-${{ hashFiles('**/requirements.txt') }}
-#          restore-keys: |
-#            android-pip-
+      - name: Get pip cache dir
+        id: pip-cache
+        run: |
+          echo "::set-output name=dir::$(pip cache dir)"
+
+      - name: pip cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: android-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            android-pip-
 
       - name: "update the machine"
         run: sudo apt-get -y update
@@ -37,7 +38,12 @@ jobs:
 
       - name: "install dependencies"
         run: |
-          sudo apt install -y zip unzip openjdk-8-jdk && sudo apt-get update && sudo apt-get install build-essential libstdc++6 aidl && sudo apt install -y autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev
+          sudo apt install -y zip unzip openjdk-8-jdk && |
+          sudo apt-get update && |
+          sudo apt-get install build-essential && |
+          sudo apt-get install libstdc++6 && |
+          sudo apt-get install aidl && |
+          sudo apt install -y autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev
 
       - name: "set path"
         run: cd src && export PATH=$PATH:~/.locl/bin/
@@ -50,3 +56,4 @@ jobs:
         with:
           name: ${{ matrix.TARGET }}
           path: src/bin/*
+
