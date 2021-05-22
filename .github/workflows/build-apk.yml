@@ -1,5 +1,12 @@
 name: build-apk
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Debug (y/n)'
+        required: true
+        default: "n"
+
 
 jobs:
   build-apk:
@@ -17,15 +24,10 @@ jobs:
           python-version: '3.7.9'
           architecture: x64
 
-      - name: Get pip cache dir
-        id: pip-cache
-        run: |
-          echo "::set-output name=dir::$(pip cache dir)"
-
       - name: pip cache
         uses: actions/cache@v2
         with:
-          path: ${{ steps.pip-cache.outputs.dir }}
+          path: ~/.cache/pip
           key: android-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             android-pip-
@@ -48,8 +50,21 @@ jobs:
       - name: "set path"
         run: cd src && export PATH=$PATH:~/.locl/bin/
 
-      - name: "compile"
-        run: cd src && buildozer -v android debug && ls
+      - name: "cache android SDK"
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/work/BeatWorkout/BeatWorkout/src/.buildozer/android
+          key: android-sdk-${{hashFiles('src/buildozer.spec')}}
+          restore-keys: |
+            android-sdk-
+
+      - name: "compile (release version)"
+        if: ${{ github.event.inputs.debug == 'y' }}
+        run: cd src && buildozer -v android release
+
+      - name: "compile (debug version)"
+        if: ${{ !(github.event.inputs.debug == 'y') }}
+        run: cd src && buildozer -v android debug
 
       - name: "upload"
         uses: actions/upload-artifact@v2
