@@ -37,7 +37,7 @@ jobs:
 
       - name: "install dependencies"
         run: |
-          sudo apt install -y zip unzip openjdk-8-jdk && sudo apt install -y autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev
+          sudo apt install -y zip unzip openjdk-8-jdk && sudo apt install -y autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libstdc++-6 libtinfo5 cmake libffi-dev
 
       - name: "set path"
         run: cd src && export PATH=$PATH:~/.locl/bin/
