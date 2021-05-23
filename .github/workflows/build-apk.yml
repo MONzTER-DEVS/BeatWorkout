@@ -59,11 +59,11 @@ jobs:
             android-sdk-
 
       - name: "compile (release version)"
-        if: ${{ github.event.inputs.debug == 'y' }}
+        if: ${{ github.event.inputs.debug == 'n' }}
         run: cd src && buildozer -v android release
 
       - name: "compile (debug version)"
-        if: ${{ !(github.event.inputs.debug == 'y') }}
+        if: ${{ !(github.event.inputs.debug == 'n') }}
         run: cd src && buildozer -v android debug
 
       - name: "upload"

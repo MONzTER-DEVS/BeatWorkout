@@ -13,10 +13,10 @@ package.domain = monzter.beatworkout.com
 source.dir = app/
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas, ttf
+source.include_exts = py,png,jpg,kv,atlas,ttf
 
 # (list) List of inclusions using pattern matching
-source.include_patterns = assets/*, images/*.png, fonts/*
+source.include_patterns = assets/*, images/*.png, fonts/Roboto_Condensed/*
 
 # (list) Source files to exclude (let empty to not exclude anything)
 #source.exclude_exts = spec
@@ -28,7 +28,7 @@ source.include_patterns = assets/*, images/*.png, fonts/*
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.1
+version = 0.2
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
