@@ -10,13 +10,13 @@ package.name = com.monzter.beatworkout
 package.domain = monzter.beatworkout.com
 
 # (str) Source code where the main.py live
-source.dir = app/
+source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
 source.include_exts = py,png,jpg,kv,atlas
 
 # (list) List of inclusions using pattern matching
-source.include_patterns = assets/*, images/*.png, fonts/*
+source.include_patterns = assets/*, images/*.png, fonts/Roboto_Condensed/*
 
 # (list) Source files to exclude (let empty to not exclude anything)
 #source.exclude_exts = spec

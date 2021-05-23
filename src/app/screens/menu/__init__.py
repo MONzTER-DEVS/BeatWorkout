@@ -17,4 +17,4 @@ class MainWidget(MDGridLayout):
     pass
 
 
-Builder.load_file("menu.kv")
+Builder.load_file("app/screens/menu/menu.kv")

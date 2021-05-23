@@ -19,11 +19,10 @@ def resource_path(relative_path):
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(os.path.dirname(sys.argv[0]))
-
     return os.path.join(base_path, relative_path)
 
 
-resource_add_path(resource_path(os.path.join("screens", "menu")))
+resource_add_path(resource_path(os.path.join("app", "screens", "menu")))
 resource_add_path(resource_path(os.path.join("fonts", "Roboto_Condensed")))
 
 
@@ -54,14 +53,10 @@ class BeatWorkoutApp(MDApp):
         self.theme_cls.primary_palette = 'DeepOrange'
         self.theme_cls.theme_style = "Dark"  # "Light"
 
-        if getattr(sys, "frozen", False):
-            from app.screens import (
-                menu,
-            )
-        else:
-            from screens import (
-                menu,
-            )
+        # if getattr(sys, "frozen", False):
+        from app.screens import (
+            menu,
+        )
         self.root = ScreenManager()
         self.menu = menu.MainMenu()
         self.screens = {"menu": self.menu}
