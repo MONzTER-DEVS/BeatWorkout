@@ -70,32 +70,66 @@
             id: nav_drawer
 
             ContentNavigationDrawer:
+                id: content_drawer
+                padding: dp(10)
                 spacing : dp(10)
                 md_bg_color: app.theme_cls.bg_dark
                 orientation: "vertical"
-                MDLabel:
-                    text : "Menu"
-                    size_hint: 1, 0.1
-                    font_size : 40
-                    valign: 'top'
-                    halign: 'center'
-                    color : app.theme_cls.primary_color
+                AnchorLayout:
+                    anchor_x: "left"
+                    size_hint_y: None
+                    height: avatar.height
 
-                MDFlatButton:
-                    text : "@Mad"
-                    pos_hint : {"center_x":.5, "center_y":.9}
-                    size_hint: 1, None
-                    height: dp(100)
-                    font_size: 30
-                    md_bg_color: app.theme_cls.primary_color
-                MDFlatButton:
-                    text : "@Mad"
-                    pos_hint : {"center_x":.5, "center_y":.9}
-                    size_hint: 1, None
-                    height: dp(100)
-                    font_size: 30
-                    md_bg_color: app.theme_cls.primary_color
-                Widget
+                    Image:
+                        id: avatar
+                        size_hint: None, None
+                        size: "100dp", "100dp"
+                        #source: "kivymd.png"
+
+                MDLabel:
+                    text: "Name"
+                    font_style: "H4"
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                MDLabel:
+                    text: "user_name@gmail.com"
+                    font_style: "Caption"
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                #MDFlatButton:
+                #    text : "TestButton"
+                #    pos_hint : {"center_x":.5, "center_y":.9}
+                #    size_hint: 1, None
+                #    height: dp(100)
+                #    md_bg_color: app.theme_cls.primary_color
+                #MDFlatButton:
+                #    text : "TestButton"
+                #    pos_hint : {"center_x":.5, "center_y":.9}
+                #    size_hint: 1, None
+                #    height: dp(100)
+                #    md_bg_color: app.theme_cls.primary_color
+
+                ScrollView:
+                    DrawerList:
+                        id: md_list
+
+# Menu item in the DrawerList list.
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    text_color: app.theme_cls.text_color
+    on_release: self.parent.set_color_item(self)
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
 
 <Content@MDCard>:
 
@@ -122,7 +156,7 @@
 
     padding: dp(20), dp(10)
     size_hint: 1, None
-    height: "100dp"
+    height: "150dp"
 
     MDIconButton:
         icon: "menu"
@@ -135,7 +169,7 @@
 
     Label:
         text_size: self.size
-        font_size: "30dp"
+        font_size: "50dp"
         font_name: "fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
         text: "BEAT\nWORKOUT"
         halign: 'right'

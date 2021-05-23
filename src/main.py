@@ -9,6 +9,8 @@ from kivymd.uix.screen import MDScreen
 from kivy.uix.screenmanager import ScreenManager
 from kivy.core.window import Window
 from kivy.resources import resource_add_path
+from kivymd.uix.list import MDList, OneLineIconListItem
+from kivy.properties import StringProperty
 import os, sys
 
 Window.size = (480, 800)
@@ -43,6 +45,8 @@ resource_add_path(resource_path(os.path.join("fonts", "Roboto_Condensed")))
 #         #     Rectangle(pos=self.pos, size=self.size, texture=self.texture)
 #         pass
 
+class ItemDrawer(OneLineIconListItem):
+    icon = StringProperty()
 
 class BeatWorkoutApp(MDApp):
 
@@ -61,7 +65,23 @@ class BeatWorkoutApp(MDApp):
         self.menu = menu.MainMenu()
         self.screens = {"menu": self.menu}
         self.root.switch_to(self.menu)
+
         return self.root
+
+    def on_start(self):
+        icons_item = {
+            "folder": "My files",
+            "account-multiple": "Shared with me",
+            "star": "Starred",
+            "history": "Recent",
+            "checkbox-marked": "Shared with me",
+            "upload": "Upload",
+        }
+        for icon_name in icons_item.keys():
+            self.menu.ids.md_list.add_widget(
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name])
+            )
+
 
 
 if __name__ == "__main__":
