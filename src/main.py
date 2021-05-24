@@ -15,6 +15,8 @@ import os, sys
 
 Window.size = (480, 800)
 
+__version__ = "0.0.1"  # apk version
+
 
 def resource_path(relative_path):
     try:
@@ -47,6 +49,7 @@ resource_add_path(resource_path(os.path.join("fonts", "Roboto_Condensed")))
 
 class ItemDrawer(OneLineIconListItem):
     icon = StringProperty()
+
 
 class BeatWorkoutApp(MDApp):
 
@@ -81,7 +84,6 @@ class BeatWorkoutApp(MDApp):
             self.menu.ids.md_list.add_widget(
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name])
             )
-
 
 
 if __name__ == "__main__":
