@@ -54,7 +54,7 @@ class BeatWorkoutApp(MDApp):
         self.menu.ids.nav_drawer.set_state("open")
 
     def build(self):
-        self.theme_cls.primary_palette = 'DeepOrange'
+        self.theme_cls.primary_palette = 'Lime'
         self.theme_cls.theme_style = "Dark"  # "Light"
 
         # if getattr(sys, "frozen", False):
