@@ -1,3 +1,4 @@
+from app.screens import menu, settings
 from kivymd.app import MDApp
 from kivy.uix.widget import Widget
 from kivymd.uix.button import MDRectangleFlatButton
@@ -27,6 +28,7 @@ def resource_path(relative_path):
 
 
 resource_add_path(resource_path(os.path.join("app", "screens", "menu")))
+resource_add_path(resource_path(os.path.join("app", "screens", "settings")))
 resource_add_path(resource_path(os.path.join("fonts", "Roboto_Condensed")))
 
 
@@ -47,44 +49,22 @@ resource_add_path(resource_path(os.path.join("fonts", "Roboto_Condensed")))
 #         #     Rectangle(pos=self.pos, size=self.size, texture=self.texture)
 #         pass
 
-class ItemDrawer(OneLineIconListItem):
-    icon = StringProperty()
 
 
 class BeatWorkoutApp(MDApp):
-
-    def open_drawer(self):
-        self.menu.ids.nav_drawer.set_state("open")
-
     def build(self):
-        self.theme_cls.primary_palette = 'DeepOrange'
+        self.theme_cls.primary_palette = "DeepOrange"
         self.theme_cls.theme_style = "Dark"  # "Light"
-
-        # if getattr(sys, "frozen", False):
-        from app.screens import (
-            menu,
-        )
         self.root = ScreenManager()
         self.menu = menu.MainMenu()
-        self.screens = {"menu": self.menu}
+        self.settings = settings.SettingsScreen()
+        self.screens = {"menu": self.menu, "settings": self.settings}
         self.root.switch_to(self.menu)
-
         return self.root
 
-    def on_start(self):
-        icons_item = {
-            "folder": "My files",
-            "account-multiple": "Shared with me",
-            "star": "Starred",
-            "history": "Recent",
-            "checkbox-marked": "Shared with me",
-            "upload": "Upload",
-        }
-        for icon_name in icons_item.keys():
-            self.menu.ids.md_list.add_widget(
-                ItemDrawer(icon=icon_name, text=icons_item[icon_name])
-            )
-
+    def switch_screen(self, screen, direction="left"):
+        self.root.transition.direction = direction
+        self.root.switch_to(self.screens[screen])
 
 if __name__ == "__main__":
     BeatWorkoutApp().run()
