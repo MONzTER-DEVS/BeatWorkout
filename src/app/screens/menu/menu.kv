@@ -1,6 +1,6 @@
-#:set content_padding_x 50
+#:set content_padding_x 25
 #:set content_padding_y 25
-#:set content_height 150
+#:set content_card_height 150
 
 
 <MainMenu>:
@@ -12,59 +12,23 @@
 
                     NavBar:
 
-                    MDCard:
-                        border_radius: dp(50)
-                        radius: [dp(50)]
-                        size_hint: .9, 1
+                    ScrollView:
+                        #orientation: "vertical"
+                        #do_scroll_x: False
                         pos_hint: {"center_x": .5}
-                        orientation: "vertical"
-                        spacing: dp(10)
-
                         MDCard:
-                            border_radius: dp(25)
-                            radius: [dp(25)]
-                            orientation: "horizontal"
-                            padding: "8dp"
-                            size_hint: 1, None
-                            height: dp(content_height)
-                            pos_hint: {"center_x": .5, "center_y": .5}
-                            hover_behavior: True
-                            md_bg_color: app.theme_cls.primary_color
+                            id: main_content
+                            border_radius: dp(50)
+                            radius: [dp(50)]
+                            size_hint: .9, None
+                            height: dp(1000)
+                            pos_hint: {"center_x": .5}
+                            orientation: "vertical"
+                            spacing: dp(10)
 
-                            Image:
-                                source: "assets/indoor_cycle.png"
-                                theme_text_color: "Secondary"
-                                size_hint: None, 1
-                                width: dp(content_height)
-                                height: self.texture_size[1]
-
-                            MDLabel:
-                                theme_text_color: "Secondary"
-                                text: "Test label 1"
-                        
-                        MDCard:
-                            border_radius: dp(25)
-                            radius: [dp(25)]
-                            orientation: "horizontal"
-                            padding: "8dp"
-                            size_hint: 1, None
-                            height: dp(content_height)
-                            pos_hint: {"center_x": .5, "center_y": .5}
-                            hover_behavior: True
-                            md_bg_color: app.theme_cls.primary_color
-
-                            Image:
-                                source: "assets/indoor_cycle.png"
-                                theme_text_color: "Secondary"
-                                size_hint: None, 1
-                                width: dp(content_height)
-                                height: self.texture_size[1]
-
-                            MDLabel:
-                                theme_text_color: "Secondary"
-                                text: "Test label 2"
-
-                        Widget:
+                            ## THE MAIN CONTENT CARDS GO HERE
+                            
+                            Widget:
 
         MDNavigationDrawer:
             id: nav_drawer
@@ -139,7 +103,6 @@
     pos_hint: {"center_x": .5}
     orientation: "vertical"
 
-
     MDLabel:
         text: "Title"
         theme_text_color: "Secondary"
@@ -177,3 +140,25 @@
         valign: 'middle'
 
         color: app.theme_cls.primary_color
+
+<ContentCard>:
+    border_radius: dp(25)
+    radius: [dp(25)]
+    orientation: "horizontal"
+    padding: "8dp"
+    size_hint: 1, None
+    height: dp(content_card_height)
+    pos_hint: {"center_x": .5}
+    hover_behavior: True
+    md_bg_color: app.theme_cls.primary_color
+
+    Image:
+        source: "assets/indoor_cycle.png"
+        theme_text_color: "Secondary"
+        size_hint: None, 1
+        width: dp(content_card_height)
+        height: self.texture_size[1]
+
+    MDLabel:
+        theme_text_color: "Secondary"
+        text: "Test label 1"

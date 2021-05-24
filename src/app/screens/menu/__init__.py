@@ -1,24 +1,29 @@
+
 ## kivymd
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.gridlayout import MDGridLayout
-from kivymd.theming import ThemableBehavior
+from kivymd.uix.card import MDCard
 from kivymd.uix.list import MDList, OneLineIconListItem
-from kivy.uix.behaviors import ButtonBehavior
+from kivymd.theming import ThemableBehavior
 from kivymd.app import MDApp
-
 
 ## kivy
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty
+from kivy.uix.behaviors import ButtonBehavior
 
 ## others
 import os, sys
+from app.utility import load_dataa
+# sys.path.append('.../src/app/')
 
 
 class ItemDrawer(OneLineIconListItem):
     icon = StringProperty()
 
+class ContentCard(MDCard):
+    pass
 
 class MainMenu(MDScreen):
     def __init__(self, **kwargs):
@@ -34,6 +39,13 @@ class MainMenu(MDScreen):
                     on_press=lambda x: MDApp.get_running_app().switch_screen(
                         "settings"
                     ),
+                )
+            )
+        content_data = load_dataa(os.path.join("data", "main_content.json"))
+        for content_id in content_data.keys():
+            self.ids.main_content.add_widget(
+                ContentCard(
+                    
                 )
             )
 
@@ -58,10 +70,6 @@ class DrawerList(ThemableBehavior, MDList):
                 item.text_color = self.theme_cls.text_color
                 break
         instance_item.text_color = self.theme_cls.primary_color
-
-
-class MainWidget(MDGridLayout):
-    pass
 
 
 Builder.load_file("app/screens/menu/menu.kv")
