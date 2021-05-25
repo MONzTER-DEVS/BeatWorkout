@@ -11,7 +11,7 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.core.window import Window
 from kivy.resources import resource_add_path
 from kivymd.uix.list import MDList, OneLineIconListItem
-from kivy.properties import StringProperty
+from kivy.properties import ColorProperty, NumericProperty, StringProperty
 import os, sys
 
 Window.size = (480, 800)
@@ -49,6 +49,11 @@ resource_add_path(resource_path(os.path.join("fonts", "Roboto_Condensed")))
 
 
 class BeatWorkoutApp(MDApp):
+    theme = StringProperty("Dark")
+    transition = StringProperty("Slide")
+    text_color = ColorProperty([0, 0, 0, 1])
+    bg_color = ColorProperty([66 / 255, 66 / 255, 66 / 255, 1])
+
     def build(self):
         self.theme_cls.primary_palette = "Lime"
         self.theme_cls.theme_style = "Dark"  # "Light"

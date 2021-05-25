@@ -1,9 +1,159 @@
 <SettingsScreen>:
-  MDLabel:
-    text: 'Settings Screen'
-    halign: 'center'
-  MDRectangleFlatButton:
-    text: 'Back To Menu'
-    halign: 'center'
-    on_release: app.switch_screen('menu', 'right')
-    pos_hint: {"center_y": .3, "center_x": .5}
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            padding: dp(20), dp(10)
+            size_hint: 1, None
+            height: "150dp"
+            MDIconButton:
+                icon: "arrow-left"
+                user_font_size: "48sp"
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                elevation_normal: 12
+                size_hint: 0.2, 1
+                on_press: app.switch_screen("menu", "right")
+
+            Label:
+                text_size: self.size
+                font_size: "50dp"
+                font_name: "fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
+                text: "BEAT\nWORKOUT"
+                halign: 'right'
+                valign: 'middle'
+                color: app.theme_cls.primary_color
+        ScrollView:
+            id: sv
+            effect_cls : 'ScrollEffect'
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    padding: 0, dp(20), 0, 0
+                    spacing: dp(4)
+
+                    MDBoxLayout:
+                        adaptive_height: True
+                        padding: dp(20), 0, 0, 0
+
+                        MDLabel:
+                            text: "Display"
+                            font_style: 'Subtitle2'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                    MDCard:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: app.bg_color
+                        ripple_behavior: True
+                        elevation: 0
+                        padding: dp(20), dp(10), 0, dp(10)
+                        spacing: dp(15)
+
+                        MDIcon:
+                            id: theme_icon
+                            icon: "theme-light-dark"
+                            size_hint: None, None
+                            size: self.texture_size
+                            pos_hint: {'center_y': .5}
+
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            adaptive_height: True
+
+                            MDLabel:
+                                text: "Theme"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+
+                            MDLabel:
+                                text: app.theme
+                                font_style: 'Caption'
+                                size_hint_y: None
+                                height: self.texture_size[1]
+
+                    MDCard:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: app.bg_color
+                        ripple_behavior: True
+                        elevation: 0
+                        padding: dp(20), dp(10), 0, dp(10)
+                        spacing: dp(15)
+
+                        MDIcon:
+                            id: theme_icon
+                            icon: "format-color-fill"
+                            size_hint: None, None
+                            size: self.texture_size
+                            pos_hint: {'center_y': .5}
+
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            adaptive_height: True
+
+                            MDLabel:
+                                text: "Color"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+
+                            MDLabel:
+                                text: app.theme_cls.primary_palette
+                                font_style: 'Caption'
+                                size_hint_y: None
+                                height: self.texture_size[1]
+
+                    MDCard:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: app.bg_color
+                        ripple_behavior: True
+                        elevation: 0
+                        padding: dp(20), dp(10), 0, dp(10)
+                        spacing: dp(15)
+
+                        MDIcon:
+                            id: theme_icon
+                            icon: "arrow-left-right"
+                            size_hint: None, None
+                            size: self.texture_size
+                            pos_hint: {'center_y': .5}
+
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            adaptive_height: True
+
+                            MDLabel:
+                                text: "Transition"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+
+                            MDLabel:
+                                text: app.transition
+                                font_style: 'Caption'
+                                size_hint_y: None
+                                height: self.texture_size[1]
+
+                MDSeparator:
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    padding: 0, dp(20), 0, 0
+                    spacing: dp(4)
+
+                    MDBoxLayout:
+                        adaptive_height: True
+                        padding: dp(20), 0, 0, 0
+
+                        MDLabel:
+                            text: "Some More Things"
+                            font_style: 'Subtitle2'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+

@@ -1,4 +1,3 @@
-
 ## kivymd
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.gridlayout import MDGridLayout
@@ -16,14 +15,17 @@ from kivy.uix.behaviors import ButtonBehavior
 ## others
 import os, sys
 from app.utility import load_dataa
+
 # sys.path.append('.../src/app/')
 
 
 class ItemDrawer(OneLineIconListItem):
     icon = StringProperty()
 
+
 class ContentCard(MDCard):
     pass
+
 
 class MainMenu(MDScreen):
     def __init__(self, **kwargs):
@@ -43,11 +45,7 @@ class MainMenu(MDScreen):
             )
         content_data = load_dataa(os.path.join("data", "main_content.json"))
         for content_id in content_data.keys():
-            self.ids.main_content.add_widget(
-                ContentCard(
-                    
-                )
-            )
+            self.ids.main_content.add_widget(ContentCard())
 
     def open_drawer(self):
         self.ids.nav_drawer.set_state("open")
