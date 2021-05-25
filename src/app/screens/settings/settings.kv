@@ -33,7 +33,7 @@
                 MDBoxLayout:
                     orientation: 'vertical'
                     adaptive_height: True
-                    padding: 0, dp(20), 0, 0
+                    padding: dp(30)
                     spacing: dp(4)
 
                     MDBoxLayout:
@@ -44,6 +44,8 @@
                             text: "Display"
                             font_style: 'Subtitle2'
                             size_hint_y: None
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
                             height: self.texture_size[1]
 
                     MDCard:
@@ -58,6 +60,7 @@
                         MDIcon:
                             id: theme_icon
                             icon: "theme-light-dark"
+                            theme_text_color: "Secondary"
                             size_hint: None, None
                             size: self.texture_size
                             pos_hint: {'center_y': .5}
@@ -70,12 +73,14 @@
                                 text: "Theme"
                                 size_hint_y: None
                                 height: self.texture_size[1]
+                                theme_text_color: "Secondary"
 
                             MDLabel:
                                 text: app.theme
                                 font_style: 'Caption'
                                 size_hint_y: None
                                 height: self.texture_size[1]
+                                theme_text_color: "Secondary"
 
                     MDCard:
                         size_hint_y: None
@@ -92,6 +97,7 @@
                             size_hint: None, None
                             size: self.texture_size
                             pos_hint: {'center_y': .5}
+                            theme_text_color: "Secondary"
 
                         MDBoxLayout:
                             orientation: 'vertical'
@@ -101,12 +107,14 @@
                                 text: "Color"
                                 size_hint_y: None
                                 height: self.texture_size[1]
+                                theme_text_color: "Secondary"
 
                             MDLabel:
                                 text: app.theme_cls.primary_palette
                                 font_style: 'Caption'
                                 size_hint_y: None
                                 height: self.texture_size[1]
+                                theme_text_color: "Secondary"
 
                     MDCard:
                         size_hint_y: None
@@ -123,6 +131,7 @@
                             size_hint: None, None
                             size: self.texture_size
                             pos_hint: {'center_y': .5}
+                            theme_text_color: "Secondary"
 
                         MDBoxLayout:
                             orientation: 'vertical'
@@ -132,19 +141,21 @@
                                 text: "Transition"
                                 size_hint_y: None
                                 height: self.texture_size[1]
+                                theme_text_color: "Secondary"
 
                             MDLabel:
                                 text: app.transition
                                 font_style: 'Caption'
                                 size_hint_y: None
                                 height: self.texture_size[1]
+                                theme_text_color: "Secondary"
 
                 MDSeparator:
 
                 MDBoxLayout:
                     orientation: 'vertical'
                     adaptive_height: True
-                    padding: 0, dp(20), 0, 0
+                    padding: dp(30)
                     spacing: dp(4)
 
                     MDBoxLayout:
@@ -154,6 +165,8 @@
                         MDLabel:
                             text: "Some More Things"
                             font_style: 'Subtitle2'
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
                             size_hint_y: None
                             height: self.texture_size[1]
 

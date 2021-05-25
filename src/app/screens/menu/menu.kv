@@ -14,17 +14,20 @@
 
                     ScrollView:
                         #orientation: "vertical"
-                        #do_scroll_x: False
+                        do_scroll_x: False
                         pos_hint: {"center_x": .5}
                         MDCard:
                             id: main_content
+                            adaptive_height: True
+
                             border_radius: dp(50)
                             radius: [dp(50)]
-                            size_hint: .9, None
+                            size_hint: 1, None
                             height: dp(1000)
                             pos_hint: {"center_x": .5}
                             orientation: "vertical"
-                            spacing: dp(10)
+                            padding: dp(40)
+                            spacing: dp(40)
 
                             ## THE MAIN CONTENT CARDS GO HERE
                             
