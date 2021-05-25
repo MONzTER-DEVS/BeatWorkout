@@ -54,6 +54,7 @@ class BeatWorkoutApp(MDApp):
     text_color = ColorProperty([0, 0, 0, 1])
     bg_color = ColorProperty([66 / 255, 66 / 255, 66 / 255, 1])
 
+
     def build(self):
         self.theme_cls.primary_palette = "Lime"
         self.theme_cls.theme_style = "Dark"  # "Light"
