@@ -16,7 +16,7 @@ from kivymd.uix.list import MDList, OneLineIconListItem
 from kivy.properties import ColorProperty, NumericProperty, StringProperty
 import os , sys
 
-Window.size = (480, 800)
+#Window.size = (480, 800)
 
 def resource_path(relative_path):
     try:
