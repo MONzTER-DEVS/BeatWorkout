@@ -1,3 +1,5 @@
+__version__ = "0.0.1"  # app version
+
 from app.screens import menu, settings
 from kivymd.app import MDApp
 from kivy.uix.widget import Widget
@@ -12,10 +14,9 @@ from kivy.core.window import Window
 from kivy.resources import resource_add_path
 from kivymd.uix.list import MDList, OneLineIconListItem
 from kivy.properties import ColorProperty, NumericProperty, StringProperty
-import os, sys
+import os , sys
 
 Window.size = (480, 800)
-
 
 def resource_path(relative_path):
     try:
