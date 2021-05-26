@@ -14,9 +14,11 @@ from kivy.core.window import Window
 from kivy.resources import resource_add_path
 from kivymd.uix.list import MDList, OneLineIconListItem
 from kivy.properties import ColorProperty, NumericProperty, StringProperty
-import os , sys
+import os, sys, json
+from kivy.storage.jsonstore import JsonStore
 
-#Window.size = (480, 800)
+# Window.size = (480, 800)
+
 
 def resource_path(relative_path):
     try:
@@ -54,7 +56,10 @@ class BeatWorkoutApp(MDApp):
     transition = StringProperty("Slide")
     text_color = ColorProperty([0, 0, 0, 1])
     bg_color = ColorProperty([66 / 255, 66 / 255, 66 / 255, 1])
-
+    if getattr(sys, "frozen", False):
+        data = JsonStore(os.path.join("data", "main_content.json"))
+    else:
+        data = JsonStore(os.path.join("src", "data", "main_content.json"))
 
     def build(self):
         self.theme_cls.primary_palette = "Lime"

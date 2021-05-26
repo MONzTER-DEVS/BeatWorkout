@@ -11,11 +11,11 @@ from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty
 from kivy.uix.behaviors import ButtonBehavior
+from kivy.storage.jsonstore import JsonStore
 
 # others
 import os
 import sys
-from app.utility import load_data
 
 # sys.path.append('.../src/app/')
 
@@ -33,6 +33,7 @@ class ContentCard(MDCard):
 
 class MainMenu(MDScreen):
     def __init__(self, **kwargs):
+
         super().__init__(**kwargs)
         icons_item = {
             "settings": "Settings",
@@ -47,12 +48,12 @@ class MainMenu(MDScreen):
                     ),
                 )
             )
-        content_data = load_data(os.path.join("data", "main_content.json"))
-        for content_id in content_data.keys():
+        content_data = MDApp.get_running_app().data
+        for content_id in content_data:
             c = ContentCard(
-                content_data[content_id]["name"], 
-                content_data[content_id]["content"],)
-            print(c.content)
+                content_data[content_id]["name"],
+                content_data[content_id]["content"],
+            )
             self.ids.main_content.add_widget(c)
 
     def open_drawer(self):
