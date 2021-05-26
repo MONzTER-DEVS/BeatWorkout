@@ -1,7 +1,44 @@
 {
-  "1": { "name": "something", "timer": 10, "beat_interval": 2, "music": null },
-  "2": { "name": "something", "timer": 10, "beat_interval": 2, "music": null },
-  "3": { "name": "something", "timer": 10, "beat_interval": 2, "music": null },
-  "4": { "name": "something", "timer": 10, "beat_interval": 2, "music": null },
-  "5": { "name": "something", "timer": 10, "beat_interval": 2, "music": null }
+  "1": {
+    "name": "LOREM1",
+    "content": "SOME CONTENT",
+    "timer": 10,
+    "beat_interval": 2,
+    "music": null
+  },
+  "2": {
+    "name": "something2",
+    "content": "somecontent2",
+    "timer": 10,
+    "beat_interval": 2,
+    "music": null
+  },
+  "3": {
+    "name": "LOREM1",
+    "content": "SOME CONTENT",
+    "timer": 10,
+    "beat_interval": 2,
+    "music": null
+  },
+  "4": {
+    "name": "something2",
+    "content": "somecontent2",
+    "timer": 10,
+    "beat_interval": 2,
+    "music": null
+  },
+  "5": {
+    "name": "LOREM1",
+    "content": "SOME CONTENT",
+    "timer": 10,
+    "beat_interval": 2,
+    "music": null
+  },
+  "6": {
+    "name": "something2",
+    "content": "somecontent2",
+    "timer": 10,
+    "beat_interval": 2,
+    "music": null
+  }
 }

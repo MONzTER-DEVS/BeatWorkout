@@ -13,25 +13,25 @@
                     NavBar:
 
                     ScrollView:
-                        #orientation: "vertical"
                         do_scroll_x: False
-                        pos_hint: {"center_x": .5}
+                        size_hint: .9, 1
+                        pos_hint: {"center_x": .5, "center_y":.5}
+                        effect_cls: "OpacityScrollEffect"
+                        bar_width: 0
                         MDCard:
                             id: main_content
                             adaptive_height: True
-
-                            border_radius: dp(50)
                             radius: [dp(50)]
+                            border_radius: dp(50)
                             size_hint: 1, None
                             height: dp(1000)
                             pos_hint: {"center_x": .5}
                             orientation: "vertical"
-                            padding: dp(40)
-                            spacing: dp(40)
+                            padding: dp(10)
+                            spacing: dp(-50)
 
                             ## THE MAIN CONTENT CARDS GO HERE
                             
-                            Widget:
 
         MDNavigationDrawer:
             id: nav_drawer
@@ -98,25 +98,25 @@
         theme_text_color: "Custom"
         text_color: root.text_color
 
-<Content@MDCard>:
+#<Content@MDCard>:
 
-    border_radius: dp(50)
-    radius: [dp(50)]
-    size_hint: .9, .7
-    pos_hint: {"center_x": .5}
-    orientation: "vertical"
+#    border_radius: dp(50)
+#    radius: [dp(50)]
+#    size_hint: .9, .7
+#    pos_hint: {"center_x": .5}
+#    orientation: "vertical"
 
-    MDLabel:
-        text: "Title"
-        theme_text_color: "Secondary"
-        size_hint_y: None
-        height: self.texture_size[1]
+#    MDLabel:
+#        text: "Title"
+#        theme_text_color: "Secondary"
+#        size_hint_y: None
+#        height: self.texture_size[1]
 
-    MDSeparator:
-        height: "1dp"
+#    MDSeparator:
+#        height: "1dp"
 
-    MDLabel:
-        text: "Body"
+#    MDLabel:
+#        text: "Body"
 
 
 <NavBar@BoxLayout>:
@@ -145,23 +145,40 @@
         color: app.theme_cls.primary_color
 
 <ContentCard>:
-    border_radius: dp(25)
-    radius: [dp(25)]
+    border_radius: dp(50)
+    radius: [dp(50)]
     orientation: "horizontal"
-    padding: "8dp"
-    size_hint: 1, None
-    height: dp(content_card_height)
-    pos_hint: {"center_x": .5}
-    hover_behavior: True
+    padding: "10dp"
+    pos_hint: {"center_x": .5, "center_y": .5}
+    #ripple_behavior: True
     md_bg_color: app.theme_cls.primary_color
 
     Image:
         source: "assets/indoor_cycle.png"
-        theme_text_color: "Secondary"
         size_hint: None, 1
         width: dp(content_card_height)
-        height: self.texture_size[1]
+        #height: self.texture_size[1]
 
-    MDLabel:
-        theme_text_color: "Secondary"
-        text: "Test label 1"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(0), dp(40), dp(0), dp(40)
+        size_hint: 1, .5
+        #size: "280dp", "180dp"
+        pos_hint: {"center_x": .5, "center_y": .5}
+        MDLabel:
+            font_style: "H5"
+            theme_text_color: "Primary"
+            text: root.title
+            size_hint: 1, None
+            height: self.texture_size[1]
+
+        MDSeparator:
+            height: "5dp"
+            #md_bg_color: app.theme_cls.bg_dark
+            
+        MDLabel:
+            font_style: "Body1"
+            theme_text_color: "Secondary"
+            text: root.content
+            size_hint: 1, None
+            height: self.texture_size[1]

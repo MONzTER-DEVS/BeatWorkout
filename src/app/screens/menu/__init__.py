@@ -1,4 +1,4 @@
-## kivymd
+# kivymd
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.card import MDCard
@@ -6,15 +6,16 @@ from kivymd.uix.list import MDList, OneLineIconListItem
 from kivymd.theming import ThemableBehavior
 from kivymd.app import MDApp
 
-## kivy
+# kivy
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty
 from kivy.uix.behaviors import ButtonBehavior
 
-## others
-import os, sys
-from app.utility import load_dataa
+# others
+import os
+import sys
+from app.utility import load_data
 
 # sys.path.append('.../src/app/')
 
@@ -24,7 +25,10 @@ class ItemDrawer(OneLineIconListItem):
 
 
 class ContentCard(MDCard):
-    pass
+    def __init__(self, title, content, **kwargs):
+        self.content = content
+        self.title = title
+        super().__init__(**kwargs)
 
 
 class MainMenu(MDScreen):
@@ -43,9 +47,13 @@ class MainMenu(MDScreen):
                     ),
                 )
             )
-        content_data = load_dataa(os.path.join("data", "main_content.json"))
+        content_data = load_data(os.path.join("data", "main_content.json"))
         for content_id in content_data.keys():
-            self.ids.main_content.add_widget(ContentCard())
+            c = ContentCard(
+                content_data[content_id]["name"], 
+                content_data[content_id]["content"],)
+            print(c.content)
+            self.ids.main_content.add_widget(c)
 
     def open_drawer(self):
         self.ids.nav_drawer.set_state("open")
