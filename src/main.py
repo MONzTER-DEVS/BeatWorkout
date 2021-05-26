@@ -56,9 +56,9 @@ class BeatWorkoutApp(MDApp):
     transition = StringProperty("Slide")
     text_color = ColorProperty([0, 0, 0, 1])
     bg_color = ColorProperty([66 / 255, 66 / 255, 66 / 255, 1])
-    if getattr(sys, "frozen", False):
+    try:
         data = JsonStore(os.path.join("data", "main_content.json"))
-    else:
+    except:
         data = JsonStore(os.path.join("src", "data", "main_content.json"))
 
     def build(self):
