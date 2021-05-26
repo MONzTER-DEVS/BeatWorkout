@@ -1,4 +1,7 @@
 __version__ = "0.0.1"  # app version
+import os, sys, json
+
+# os.environ["KIVY_NO_CONSOLELOG"] = "1"
 
 from app.screens import menu, settings
 from kivymd.app import MDApp
@@ -14,7 +17,6 @@ from kivy.core.window import Window
 from kivy.resources import resource_add_path
 from kivymd.uix.list import MDList, OneLineIconListItem
 from kivy.properties import ColorProperty, NumericProperty, StringProperty
-import os, sys, json
 from kivy.storage.jsonstore import JsonStore
 
 # Window.size = (480, 800)
@@ -56,10 +58,13 @@ class BeatWorkoutApp(MDApp):
     transition = StringProperty("Slide")
     text_color = ColorProperty([0, 0, 0, 1])
     bg_color = ColorProperty([66 / 255, 66 / 255, 66 / 255, 1])
+    dirname, filename = os.path.split(os.path.abspath(__file__))
     try:
-        data = JsonStore(os.path.join("data", "main_content.json"))
+        content_data = JsonStore(os.path.join("data", "main_content.json"))
+        theme_data = JsonStore(os.path.join("data", "preferences.json"))
     except:
-        data = JsonStore(os.path.join("src", "data", "main_content.json"))
+        content_data = JsonStore(os.path.join("src", "data", "main_content.json"))
+        theme_data = JsonStore(os.path.join("src", "data", "preferences.json"))
 
     def build(self):
         self.theme_cls.primary_palette = "Lime"
@@ -70,6 +75,12 @@ class BeatWorkoutApp(MDApp):
         self.screens = {"menu": self.menu, "settings": self.settings}
         self.root.switch_to(self.menu)
         return self.root
+
+    def on_start(self):
+        theme = self.theme_data["preference1"]["theme"]
+        color = self.theme_data["preference2"]["color"]
+        self.theme_cls.theme_style = theme
+        self.theme_cls.primary_palette = color
 
     def switch_screen(self, screen, direction="left"):
         self.root.transition.direction = direction

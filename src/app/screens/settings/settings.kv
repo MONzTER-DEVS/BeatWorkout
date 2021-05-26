@@ -89,6 +89,7 @@
                         elevation: 0
                         padding: dp(20), dp(10), 0, dp(10)
                         spacing: dp(15)
+                        on_release: root.show_transition_dialog()
 
                         MDIcon:
                             id: theme_icon
@@ -135,3 +136,16 @@
                             size_hint_y: None
                             height: self.texture_size[1]
 
+
+<TransitionContent>:
+    ListItemWithCheckbox:
+        text: 'Slide'
+    ListItemWithCheckbox:
+        text: 'Fade'
+    ListItemWithCheckbox:
+        text: 'None'
+
+
+<ListItemWithCheckbox>:
+
+    RightCheckbox:

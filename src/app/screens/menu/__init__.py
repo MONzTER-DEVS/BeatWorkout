@@ -36,7 +36,7 @@ class MainMenu(MDScreen):
 
         super().__init__(**kwargs)
         icons_item = {
-            "settings": "Settings",
+            "account-settings": "Settings",
         }
         for icon_name in icons_item.keys():
             self.ids.md_list.add_widget(
@@ -48,7 +48,7 @@ class MainMenu(MDScreen):
                     ),
                 )
             )
-        content_data = MDApp.get_running_app().data
+        content_data = MDApp.get_running_app().content_data
         for content_id in content_data:
             c = ContentCard(
                 content_data[content_id]["name"],
