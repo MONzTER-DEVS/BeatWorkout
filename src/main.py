@@ -1,7 +1,7 @@
 __version__ = "0.0.1"  # app version
 import os, sys, json
 
-# os.environ["KIVY_NO_CONSOLELOG"] = "1"
+os.environ["KIVY_NO_CONSOLELOG"] = "1"
 
 from app.screens import menu, settings
 from kivymd.app import MDApp
@@ -18,6 +18,7 @@ from kivy.resources import resource_add_path
 from kivymd.uix.list import MDList, OneLineIconListItem
 from kivy.properties import ColorProperty, NumericProperty, StringProperty
 from kivy.storage.jsonstore import JsonStore
+
 
 # Window.size = (480, 800)
 
@@ -70,11 +71,16 @@ class BeatWorkoutApp(MDApp):
         self.theme_cls.primary_palette = "Lime"
         self.theme_cls.theme_style = "Dark"  # "Light"
         self.root = ScreenManager()
+        print(self.root.transition)
         self.menu = menu.MainMenu()
         self.settings = settings.SettingsScreen()
         self.screens = {"menu": self.menu, "settings": self.settings}
         self.root.switch_to(self.menu)
         return self.root
+
+    def on_stop(self, *args):
+        self.theme_data["preference1"] = {"theme": self.theme_cls.theme_style}
+        self.theme_data["preference2"] = {"color": self.theme_cls.primary_palette}
 
     def on_start(self):
         theme = self.theme_data["preference1"]["theme"]

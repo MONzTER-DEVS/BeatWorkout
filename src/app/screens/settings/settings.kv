@@ -138,10 +138,13 @@
 
 
 <TransitionContent>:
+    id: dialog_content
     ListItemWithCheckbox:
         text: 'Slide'
+
     ListItemWithCheckbox:
         text: 'Fade'
+
     ListItemWithCheckbox:
         text: 'None'
 
@@ -149,3 +152,8 @@
 <ListItemWithCheckbox>:
 
     RightCheckbox:
+
+<Check>:
+    group: 'group'
+    size_hint: None, None
+    size: dp(48), dp(48)

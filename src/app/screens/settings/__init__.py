@@ -10,6 +10,7 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.list import IRightBodyTouch, OneLineAvatarIconListItem
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivy.properties import StringProperty
+from kivy.metrics import dp
 
 
 class SettingsScreen(MDScreen):
@@ -17,8 +18,8 @@ class SettingsScreen(MDScreen):
         self.app = MDApp.get_running_app()
 
     def show_theme_picker(self):
-        theme_dialog = MDThemePicker()
-        theme_dialog.open()
+        self.theme_dialog = MDThemePicker()
+        self.theme_dialog.open()
 
     def show_transition_dialog(self):
         self.transition_dialog = MDDialog(
@@ -28,24 +29,43 @@ class SettingsScreen(MDScreen):
             content_cls=TransitionContent(),
             buttons=[
                 MDFlatButton(
-                    text="CANCEL", text_color=self.app.theme_cls.primary_color
+                    text="CANCEL",
+                    text_color=self.app.theme_cls.primary_color,
+                    on_release=self.close_dialog,
                 ),
-                MDFlatButton(text="APPLY", text_color=self.app.theme_cls.primary_color),
+                MDFlatButton(
+                    text="APPLY",
+                    text_color=self.app.theme_cls.primary_color,
+                    on_release=self.set_transition,
+                ),
             ],
         )
         self.transition_dialog.open()
 
-    def on_leave(self, *args):
-        self.app.theme_data["preference1"] = {"theme": self.app.theme_cls.theme_style}
-        self.app.theme_data["preference2"] = {
-            "color": self.app.theme_cls.primary_palette
-        }
+    def close_dialog(self, *args):
+        self.transition_dialog.dismiss()
+
+    def set_transition(self, widget, *args):
+        self.transition_content = (
+            widget.parent.parent.children[0].parent.parent.children[2].children[0]
+        )
+        for list_item in self.transition_content.children:
+            for check in list_item.children:
+                for checkbox in check.children:
+                    if str(type(checkbox)) == "<class 'app.screens.settings.RightCheckbox'>":
+                        if checkbox.active:
+                            pass
+
+        # print(layout.children)
+        # for check in layout.children:
+        # print(check.active)
+        # print(check.children[0].active)
+        # if check.active == True:
+        # print(check)
 
 
 class ListItemWithCheckbox(OneLineAvatarIconListItem):
-    """Custom list item."""
-
-    slide_icon = StringProperty("android")
+    pass
 
 
 class TransitionContent(MDBoxLayout):
@@ -55,8 +75,12 @@ class TransitionContent(MDBoxLayout):
         self.adaptive_height = True
 
 
-class RightCheckbox(IRightBodyTouch, MDCheckbox):
-    """Custom right container."""
+class Check(MDCheckbox):
+    pass
+
+
+class RightCheckbox(IRightBodyTouch, Check):
+    pass
 
 
 Builder.load_file("app/screens/settings/settings.kv")

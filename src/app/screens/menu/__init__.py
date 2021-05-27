@@ -17,8 +17,6 @@ from kivy.storage.jsonstore import JsonStore
 import os
 import sys
 
-# sys.path.append('.../src/app/')
-
 
 class ItemDrawer(OneLineIconListItem):
     icon = StringProperty()
