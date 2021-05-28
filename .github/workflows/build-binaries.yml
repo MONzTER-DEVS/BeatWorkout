@@ -81,7 +81,11 @@ jobs:
 
           - Target: "windows"
             os: "windows-latest"
-            architecture: ["x86", "x64"]
+            architecture: "x86"
+
+          - Target: "windows"
+            os: "windows-latest"
+            architecture: "x64"
 
 
     steps:
