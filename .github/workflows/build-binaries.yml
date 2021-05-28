@@ -116,7 +116,7 @@ jobs:
         run: python3 -m pip install -r requirements.txt && python3 -m pip install pyinstaller
 
       - name: "build"
-        run: cd src/ && pyinstaller pyinstaller.spec
+        run: cd src/ && dir && pyinstaller pyinstaller.spec
 
       - name: "upload"
         uses: actions/upload-artifact@v2
