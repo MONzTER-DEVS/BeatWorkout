@@ -1,7 +1,7 @@
 __version__ = "0.0.1"  # app version
 import os, sys, json
 
-os.environ["KIVY_NO_CONSOLELOG"] = "1"
+# os.environ["KIVY_NO_CONSOLELOG"] = "1"
 
 from app.screens import menu, settings
 from kivymd.app import MDApp

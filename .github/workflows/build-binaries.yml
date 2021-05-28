@@ -80,8 +80,8 @@ jobs:
         include:
 
           - Target: "windows"
-          - os: "windows-latest"
-          - architecture: ["x86", "x64"]
+            os: "windows-latest"
+            architecture: ["x86", "x64"]
 
 
     steps:
