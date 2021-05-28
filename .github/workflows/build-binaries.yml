@@ -58,16 +58,13 @@ jobs:
           restore-keys: |
             android-sdk-
 
-#      - name: "compile (release version)"
-#        if: ${{ github.event.inputs.debug == 'n' }}
-#        run: cd src && buildozer -v android release
-#
-#      - name: "compile (debug version)"
-#        if: ${{ !(github.event.inputs.debug == 'n') }}
-#        run: cd src && buildozer -v android debug
+      - name: "compile (release version)"
+        if: ${{ github.event.inputs.debug == 'n' }}
+        run: cd src && buildozer -v android release
 
-      - name: "compile"
-        run: cd src && buildozer -v android ${{ if(github.event.inputs.debug == 'n'){"release";} else{"debug";} }}
+      - name: "compile (debug version)"
+        if: ${{ !(github.event.inputs.debug == 'n') }}
+        run: cd src && buildozer -v android debug
 
       - name: "upload"
         uses: actions/upload-artifact@v2
