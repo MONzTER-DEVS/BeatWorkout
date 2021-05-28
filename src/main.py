@@ -61,11 +61,11 @@ class BeatWorkoutApp(MDApp):
     bg_color = ColorProperty([66 / 255, 66 / 255, 66 / 255, 1])
     dirname, filename = os.path.split(os.path.abspath(__file__))
     try:
-        content_data = JsonStore(os.path.join("data", "main_content.json"))
-        theme_data = JsonStore(os.path.join("data", "preferences.json"))
+        content_data = JsonStore(os.path.join("assets/data", "main_content.json"))
+        theme_data = JsonStore(os.path.join("assets/data", "preferences.json"))
     except:
-        content_data = JsonStore(os.path.join("src", "data", "main_content.json"))
-        theme_data = JsonStore(os.path.join("src", "data", "preferences.json"))
+        content_data = JsonStore(os.path.join("src", "assets/data", "main_content.json"))
+        theme_data = JsonStore(os.path.join("src", "assets/data", "preferences.json"))
 
     def build(self):
         self.theme_cls.primary_palette = "Lime"
