@@ -82,7 +82,7 @@ jobs:
           - os: "windows-latest"
           - architecture: ["x86", "x64"]
 
-    runs-on: ${{ os }}
+    runs-on: ${{ matrix.os }}
 
     steps:
 
