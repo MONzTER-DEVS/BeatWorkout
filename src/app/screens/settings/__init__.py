@@ -11,6 +11,7 @@ from kivymd.uix.list import IRightBodyTouch, OneLineAvatarIconListItem
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivy.properties import StringProperty
 from kivy.metrics import dp
+from kivy.clock import Clock
 
 
 class SettingsScreen(MDScreen):
@@ -22,11 +23,12 @@ class SettingsScreen(MDScreen):
         self.theme_dialog.open()
 
     def show_transition_dialog(self):
+        self.transition_content = TransitionContent()
         self.transition_dialog = MDDialog(
             size_hint=(0.8, 0.5),
             title="Change Transition",
             type="custom",
-            content_cls=TransitionContent(),
+            content_cls=self.transition_content,
             buttons=[
                 MDFlatButton(
                     text="CANCEL",
@@ -40,28 +42,25 @@ class SettingsScreen(MDScreen):
                 ),
             ],
         )
+        self.check_current_transition()
         self.transition_dialog.open()
+
+    def check_current_transition(self, *args):
+        for list_item in self.transition_content.children:
+            if list_item.text == self.app.transition:
+                list_item.children[0].children[0].active = True
 
     def close_dialog(self, *args):
         self.transition_dialog.dismiss()
 
-    def set_transition(self, widget, *args):
-        self.transition_content = (
-            widget.parent.parent.children[0].parent.parent.children[2].children[0]
-        )
-        for list_item in self.transition_content.children:
-            for check in list_item.children:
-                for checkbox in check.children:
-                    if str(type(checkbox)) == "<class 'app.screens.settings.RightCheckbox'>":
-                        if checkbox.active:
-                            pass
+    def checked(self, widget, *args):
+        self.seleced_transition = widget.parent.parent.text
 
-        # print(layout.children)
-        # for check in layout.children:
-        # print(check.active)
-        # print(check.children[0].active)
-        # if check.active == True:
-        # print(check)
+    def set_transition(self, widget, *args):
+        self.transition_dialog.dismiss()
+        Clock.schedule_once(
+            lambda x: self.app.change_transition(self.seleced_transition)
+        )
 
 
 class ListItemWithCheckbox(OneLineAvatarIconListItem):

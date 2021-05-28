@@ -31,7 +31,7 @@ class ContentCard(MDCard):
 
 class MainMenu(MDScreen):
     def __init__(self, **kwargs):
-
+        
         super().__init__(**kwargs)
         icons_item = {
             "account-settings": "Settings",

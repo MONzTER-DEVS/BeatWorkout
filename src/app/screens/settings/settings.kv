@@ -146,14 +146,17 @@
         text: 'Fade'
 
     ListItemWithCheckbox:
+        text: 'Card'
+
+    ListItemWithCheckbox:
         text: 'None'
 
 
 <ListItemWithCheckbox>:
-
     RightCheckbox:
 
 <Check>:
     group: 'group'
     size_hint: None, None
     size: dp(48), dp(48)
+    on_release: app.settings.checked(self)
