@@ -129,12 +129,67 @@
                         padding: dp(20), 0, 0, 0
 
                         MDLabel:
-                            text: "Some More Things"
+                            text: "Help"
                             font_style: 'Subtitle2'
                             theme_text_color: "Custom"
                             text_color: app.theme_cls.primary_color
                             size_hint_y: None
                             height: self.texture_size[1]
+                    MDCard:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: app.bg_color
+                        ripple_behavior: True
+                        elevation: 0
+                        padding: dp(20), dp(10), 0, dp(10)
+                        spacing: dp(15)
+                        on_release: root.rate()
+                        
+                        MDIcon: 
+                            id: theme_icon
+                            icon: "star"
+                            size_hint: None, None
+                            size: self.texture_size
+                            pos_hint: {'center_y': .5}
+                            theme_text_color: "Secondary"
+
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            adaptive_height: True
+
+                            MDLabel:
+                                text: "Rate"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                theme_text_color: "Secondary"
+                    MDCard:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: app.bg_color
+                        ripple_behavior: True
+                        elevation: 0
+                        padding: dp(20), dp(10), 0, dp(10)
+                        spacing: dp(15)
+                        on_release: app.switch_screen('about', 'left')
+
+                        MDIcon:
+                            id: theme_icon
+                            icon: "information-outline"
+                            size_hint: None, None
+                            size: self.texture_size
+                            pos_hint: {'center_y': .5}
+                            theme_text_color: "Secondary"
+
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            adaptive_height: True
+
+                            MDLabel:
+                                text: "About"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                theme_text_color: "Secondary"
+
 
 
 <TransitionContent>:

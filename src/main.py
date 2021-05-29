@@ -3,7 +3,7 @@ import os, sys, json
 
 os.environ["KIVY_NO_CONSOLELOG"] = "1"
 
-from app.screens import menu, settings
+from app.screens import menu, settings, about
 from kivymd.app import MDApp
 from kivy.uix.widget import Widget
 from kivymd.uix.button import MDRectangleFlatButton
@@ -38,6 +38,7 @@ def resource_path(relative_path):
 
 resource_add_path(resource_path(os.path.join("app", "screens", "menu")))
 resource_add_path(resource_path(os.path.join("app", "screens", "settings")))
+resource_add_path(resource_path(os.path.join("app", "screens", "about")))
 resource_add_path(resource_path(os.path.join("fonts", "Roboto_Condensed")))
 
 
@@ -60,11 +61,13 @@ resource_add_path(resource_path(os.path.join("fonts", "Roboto_Condensed")))
 
 
 class BeatWorkoutApp(MDApp):
+    __version__ = "0.1"
     theme = StringProperty("Dark")
     transition = StringProperty("Slide")
     text_color = ColorProperty([0, 0, 0, 1])
     bg_color = ColorProperty([66 / 255, 66 / 255, 66 / 255, 1])
-
+    source_code = StringProperty('https://github.com/MONzTER-DEVS/BeatWorkout')
+    rate = StringProperty()
     transitions = {
         "Fade": FadeTransition,
         "Card": CardTransition,
@@ -88,7 +91,12 @@ class BeatWorkoutApp(MDApp):
         self.root = ScreenManager()
         self.menu = menu.MainMenu()
         self.settings = settings.SettingsScreen()
-        self.screens = {"menu": self.menu, "settings": self.settings}
+        self.about = about.AboutScreen()
+        self.screens = {
+            "menu": self.menu,
+            "settings": self.settings,
+            "about": self.about,
+        }
         self.root.switch_to(self.menu)
         return self.root
 

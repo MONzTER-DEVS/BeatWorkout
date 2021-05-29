@@ -1,0 +1,81 @@
+<AboutScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            padding: dp(20), dp(10)
+            size_hint: 1, None
+            height: "150dp"
+            MDIconButton:
+                icon: "arrow-left"
+                user_font_size: "48sp"
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                elevation_normal: 12
+                size_hint: 0.2, 1
+                on_press: app.switch_screen("settings", "right")
+
+            Label:
+                text_size: self.size
+                font_size: "50dp"
+                font_name: "fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
+                text: "BEAT\nWORKOUT"
+                halign: 'right'
+                valign: 'middle'
+                color: app.theme_cls.primary_color
+        MDBoxLayout:
+            orientation: 'vertical'
+            adaptive_height: True
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+
+                MDLabel:
+                    text: "Beat Workout"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    font_name: "Poppins"
+                    font_style: "H5"
+                    halign: "center"
+
+                MDLabel:
+                    text: f"Version {app.__version__}"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    font_name: "Poppins"
+                    font_style: "Subtitle1"
+                    theme_text_color: "Secondary"
+                    halign: "center"
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+
+                AnchorLayout:
+                    size_hint_y: None
+                    height: logo.height + dp(20)
+                    padding: 0, dp(10)
+
+                    Image:
+                        id: logo
+                        size_hint: None, None
+                        height: dp(120)
+                        width: dp(120)
+                        source: 'assets/indoor_cycle.png'
+                        allow_stretch: True
+
+            AnchorLayout:
+                size_hint_y: None
+                height: source_code.height + dp(40)
+                padding: 0, dp(20)
+
+                MDTextButton:
+                    id: source_code
+                    markup: True
+                    size_hint: None, None
+                    text: "[u][color=#4d91ff]SOURCE CODE[/color][/u]"
+                    font_name: "Poppins"
+                    font_style: "Subtitle1"
+                    on_release:
+                        root.source_code()
+        Widget:

@@ -12,7 +12,7 @@ from kivymd.uix.selectioncontrol import MDCheckbox
 from kivy.properties import StringProperty
 from kivy.metrics import dp
 from kivy.clock import Clock
-
+import webbrowser
 
 class SettingsScreen(MDScreen):
     def on_enter(self, *args):
@@ -61,6 +61,12 @@ class SettingsScreen(MDScreen):
         Clock.schedule_once(
             lambda x: self.app.change_transition(self.seleced_transition)
         )
+
+    def rate(self, *args):
+        """
+        will lead to the play store page of your app
+        """
+        webbrowser.open(self.app.rate)
 
 
 class ListItemWithCheckbox(OneLineAvatarIconListItem):
